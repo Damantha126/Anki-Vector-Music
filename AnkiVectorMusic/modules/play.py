@@ -446,7 +446,7 @@ async def play(_, message: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>🔴 Flood Wait Error 🔴 \nUser {user.first_name} couldn't join your group due to heavy requests for userbot! Make sure user is not banned in group."
+                        f"<b>⚠️ Flood Wait Error ⚠️ \nUser {user.first_name} couldn't join your group due to heavy requests for userbot! Make sure user is not banned in group."
                         "\n\nOr manually add assistant to your Group and try again</b>",
                     )
     try:
@@ -502,7 +502,7 @@ async def play(_, message: Message):
         )
         file_name = get_file_name(audio)
         title = file_name
-        thumb_name = "https://telegra.ph/file/f6086f8909fbfeb0844f2.png"
+        thumb_name = "https://telegra.ph/file/94f98b19b2cd42aa50f4c.jpg"
         thumbnail = thumb_name
         duration = round(audio.duration / 60)
         views = "Locally added"
@@ -545,8 +545,7 @@ async def play(_, message: Message):
                     InlineKeyboardButton("Menu ⏯ ", callback_data="menu"),
                 ],
                 [
-                    InlineKeyboardButton(text="🎬 YouTube", url=f"{url}"),
-                    InlineKeyboardButton(text="Download 📥", url=f"{dlurl}"),
+                    InlineKeyboardButton(text="🎬 Watch on YouTube", url=f"{url}"),
                 ],
                 [InlineKeyboardButton(text="❌ Close", callback_data="cls")],
             ]
@@ -631,7 +630,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="▶️ **Playing** here the song requested by {} via Youtube Music 😜".format(
+            caption="▶️ **Playing** here the song requested by {} via Youtube Music 💮".format(
                 message.from_user.mention()
             ),
         )
@@ -684,7 +683,7 @@ async def deezer(client: Client, message_: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>🔴 Flood Wait Error 🔴 \nUser {user.first_name} couldn't join your group due to heavy requests for userbot! Make sure user is not banned in group."
+                        f"<b>⚠️ Flood Wait Error ⚠️ \nUser {user.first_name} couldn't join your group due to heavy requests for userbot! Make sure user is not banned in group."
                         "\n\nOr manually add assistant to your Group and try again</b>",
                     )
     try:
@@ -812,7 +811,7 @@ async def jiosaavn(client: Client, message_: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>🔴 Flood Wait Error 🔴 \nUser {user.first_name} couldn't join your group due to heavy requests for userbot! Make sure user is not banned in group."
+                        f"<b>⚠️ Flood Wait Error ⚠️ \nUser {user.first_name} couldn't join your group due to heavy requests for userbot! Make sure user is not banned in group."
                         "\n\nOr manually add Anki vector Music to your Group and try again</b>",
                     )
     try:
