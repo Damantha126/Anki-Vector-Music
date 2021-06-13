@@ -17,6 +17,10 @@
       "description": "Your bot's username without @",
       "required": true
     },
+    "BOTS_CHANNEL": {
+      "description": "Bots Channel Name",
+      "required": true
+    },
     "BOT_NAME": {
       "description": "Your MusicPlayer Bot Name.",
       "required": false,
