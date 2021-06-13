@@ -413,7 +413,7 @@ async def play(_, message: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>🔴 Flood Wait Error 🔴 \nUser {user.first_name} couldn't join your channel due to heavy requests for userbot! Make sure user is not banned in group."
+                        f"<b>⚠️ Flood Wait Error ⚠️ \nUser {user.first_name} couldn't join your channel due to heavy requests for userbot! Make sure user is not banned in group."
                         "\n\nOr manually add assistant to your Group and try again</b>",
                     )
     try:
@@ -595,7 +595,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="▶️ **Playing** the song requested by {} via Youtube Music 😜 in Linked Channel".format(
+            caption="▶️ **Playing** the song requested by {} via Youtube Music 🅾️ in Linked Channel".format(
                 message.from_user.mention()
             ),
         )
@@ -657,7 +657,7 @@ async def deezer(client: Client, message_: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>🔴 Flood Wait Error 🔴 \nUser {user.first_name} couldn't join your channel due to heavy requests for userbot! Make sure user is not banned in channel."
+                        f"<b>⚠️ Flood Wait Error ⚠️ \nUser {user.first_name} couldn't join your channel due to heavy requests for userbot! Make sure user is not banned in channel."
                         "\n\nOr manually add assistant to your Group and try again</b>",
                     )
     try:
@@ -788,8 +788,8 @@ async def jiosaavn(client: Client, message_: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>🔴 Flood Wait Error 🔴 \nUser {user.first_name} couldn't join your channel due to heavy requests for userbot! Make sure user is not banned in group."
-                        "\n\nOr manually add Anki Vector Music to your Group and try again</b>",
+                        f"<b.⚠️ Flood Wait Error ⚠️ \nUser {user.first_name} couldn't join your channel due to heavy requests for userbot! Make sure user is not banned in group."
+                        "\n\nOr manually add @AnkivectorMusicbot to your Group and try again</b>",
                     )
     try:
         await USER.get_chat(chid)
@@ -813,7 +813,7 @@ async def jiosaavn(client: Client, message_: Message):
         sname = songs.result[0].song
         slink = songs.result[0].media_url
         ssingers = songs.result[0].singers
-        sthumb = "https://telegra.ph/file/f6086f8909fbfeb0844f2.png"
+        sthumb = "https://telegra.ph/file/94f98b19b2cd42aa50f4c.jpg"
         sduration = int(songs.result[0].duration)
     except Exception as e:
         await res.edit("Found Literally Nothing!, You Should Work On Your English.")
