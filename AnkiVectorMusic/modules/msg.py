@@ -17,17 +17,17 @@
 import os
 from AnkiVectorMusic.config import SOURCE_CODE,ASSISTANT_NAME,PROJECT_NAME,SUPPORT_GROUP,UPDATES_CHANNEL
 class Messages():
-      START_MSG = "**Hello 👋 [{}](tg://user?id={})!**\n\n🤖 I am an advanced bot created for playing music in the voice chats of Telegram Groups & Channels.\n\n✅ Send me /help for more info."
+      START_MSG = "**Hello 👋 [{}](tg://user?id={})!**I Can Play Music In Voice Chats of Telegram Groups./nI Have A lot of cool feature that will amaze You!/n/nClick /help For More Help On My Usage 💖"
       HELP_MSG = [
         ".",
 f"""
 **Hey 👋 Welcome back to {PROJECT_NAME}
-⚪️ {PROJECT_NAME} can play music in your group's voice chat as well as channel voice chats
-⚪️ Assistant name >> @{ASSISTANT_NAME}\n\nClick next for instructions**
+♦️ {PROJECT_NAME} can play music in your group's voice chat as well as channel voice chats
+♦️ Assistant name >> @{ASSISTANT_NAME}\n\nClick next for instructions**
 """,
 
 f"""
-**Setting up**
+**⏺Setting up⏺**
 1) Make bot admin (Group and in channel if use cplay)
 2) Start a voice chat
 3) Try /play [song name] for the first time by an admin
@@ -37,7 +37,7 @@ f"""
 2) Send /userbotjoinchannel in linked group
 3) Now send commands in linked group
 **Commands**
-**=>> Song Playing 🎧**
+**⏺Song Playing⏺**
 - /play: Play song using youtube music
 - /play [yt url] : Play the given yt url
 - /play [reply yo audio]: Play replied audio
@@ -55,8 +55,8 @@ f"""
 """,
         
 f"""
-**=>> Channel Music Play 🛠**
-⚪️ For linked group admins only:
+**⏺Channel Music Play⏺**
+♦️ For linked group admins only:
 - /cplay [song name] - play song you requested
 - /cdplay [song name] - play song you requested via deezer
 - /csplay [song name] - play song you requested via jio saavn
@@ -69,7 +69,7 @@ f"""
 - /cend - stop music play
 - /userbotjoinchannel - invite assistant to your chat
 channel is also can be used instead of c ( /cplay = /channelplay )
-⚪️ If you donlt like to play in linked group:
+♦️ If you donlt like to play in linked group:
 1) Get your channel ID.
 2) Create a group with tittle: Channel Music: your_channel_id
 3) Add bot as Channel admin with full perms
@@ -78,13 +78,8 @@ channel is also can be used instead of c ( /cplay = /channelplay )
 """,
 
 f"""
-**=>> More tools 🧑‍🔧**
+**⏺More tools⏺**
 - /admincache: Updates admin info of your group. Try if bot isn't recognize admin
 - /userbotjoin: Invite @{ASSISTANT_NAME} Userbot to your chat
-**=>> Commands for Sudo Users ⚔️**
- - /userbotleaveall - remove assistant from all chats
- - /gcast <reply to message> - globally brodcast replied message to all chats
- - /pmpermit [on/off] - enable/disable pmpermit message
-*Sudo Users can execute any command in any groups
 """
       ]
