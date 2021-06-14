@@ -17,13 +17,13 @@
 import os
 from AnkiVectorMusic.config import SOURCE_CODE,ASSISTANT_NAME,PROJECT_NAME,SUPPORT_GROUP,UPDATES_CHANNEL
 class Messages():
-      START_MSG = "**Hello 👋 [{}](tg://user?id={})!**\nI can play music in voice chats of Telegeam Groups & Channels.\nI have a lot of cool feature that will amaze you!\n\nTo add in your group contact us at @ankivectorUpdates .\n\nHit /help list of available commands."
+      START_MSG = "<b>**Hello 👋 [{}](tg://user?id={})!**\nI can play music in voice chats of Telegeam Groups & Channels.\nI have a lot of cool feature that will amaze you!\n\nTo add in your group contact us at @ankivectorUpdates .\n\nHit /help list of available commands.</b>"
       HELP_MSG = [
         ".",
 f"""
 **Hey 👋 Welcome back to {PROJECT_NAME}
-♦️ {PROJECT_NAME} can play music in your group's voice chat as well as channel voice chats
-♦️ Assistant name >> @{ASSISTANT_NAME}\n\nClick next for instructions**
+\n\n♦️ {PROJECT_NAME} can play music in your group's voice chat as well as channel voice chats
+\n♦️ Assistant name >> @{ASSISTANT_NAME}\n\nClick next for instructions**
 """,
 
 f"""
@@ -58,7 +58,7 @@ f"""
         
 f"""
 **⏺Channel Music Play⏺**
- ♦️ For linked group admins only:
+\n\n <b>♦️ For linked group admins only:</b>
 
 - /cplay [song name] - play song you requested
 - /cdplay [song name] - play song you requested via deezer
