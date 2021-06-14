@@ -18,7 +18,7 @@ import logging
 from AnkiVectorMusic.modules.msg import Messages as tr
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
-from AnkiVectorMusic.config import BOTS_CHANNEL,ASSISTANT_NAME,PROJECT_NAME,SUPPORT_GROUP,UPDATES_CHANNEL,BOT_USERNAME
+from AnkiVectorMusic.config import SOURCE_CODE,ASSISTANT_NAME,PROJECT_NAME,SUPPORT_GROUP,UPDATES_CHANNEL,BOT_USERNAME
 logging.basicConfig(level=logging.INFO)
 
 @Client.on_message(filters.private & filters.incoming & filters.command(['start']))
@@ -35,7 +35,7 @@ def _start(client, message):
                         "Support Group", url=f"https://t.me/{SUPPORT_GROUP}")
                 ],[
                     InlineKeyboardButton(
-                        "Bots Channel", url=f"https://t.me/{BOTS_CHANNEL}")
+                        "Bots Channel", url=f"https://t.me/slhitbotofficial")
                 ]
             ]
         ),
