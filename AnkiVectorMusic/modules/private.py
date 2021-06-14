@@ -111,7 +111,7 @@ async def ghelp(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "❓ Help ❓", url=f"https://t.me/{BOT_USERNAME}?start"
+                        "❓ Help ❓", url=f"https://t.me/{BOT_USERNAME}?start=help"
                     )
                 ]
             ]
