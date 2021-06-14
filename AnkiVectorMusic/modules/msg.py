@@ -16,8 +16,9 @@
 
 import os
 from AnkiVectorMusic.config import SOURCE_CODE,ASSISTANT_NAME,PROJECT_NAME,SUPPORT_GROUP,UPDATES_CHANNEL
+await message.reply_sticker("CAACAgUAAxkBAAITxGDHJXMsNfq_eRHFXNz41dgWuxohAAI3AwACjTI5Vo8E_nseC74dHwQ")
 class Messages():
-      START_MSG = "<b>**Hello 👋 [{}](tg://user?id={})!**\nI can play music in voice chats of Telegeam Groups & Channels.\nI have a lot of cool feature that will amaze you!\n\nTo add in your group contact us at @ankivectorUpdates .\n\nHit /help list of available commands.</b>"
+      START_MSG = "**Hello 👋 [{}](tg://user?id={})!**\n <b> I can play music in voice chats of Telegeam Groups & Channels.\nI have a lot of cool feature that will amaze you!\n\nTo add in your group contact us at @ankivectorUpdates .\n\nHit /help list of available commands. </b>"
       HELP_MSG = [
         ".",
 f"""
@@ -72,8 +73,8 @@ f"""
 - /cend - stop music play
 - /userbotjoinchannel - invite assistant to your chat
 channel is also can be used instead of c ( /cplay = /channelplay )
-♦️ If you donlt like to play in linked group:
-1) Get your channel ID.
+\n\n♦️ If you donlt like to play in linked group:
+\n1) Get your channel ID.
 2) Create a group with tittle: Channel Music: your_channel_id
 3) Add bot as Channel admin with full perms
 4) Add @{ASSISTANT_NAME} to the channel as an admin.
