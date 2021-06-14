@@ -16,7 +16,6 @@
 
 import os
 from AnkiVectorMusic.config import SOURCE_CODE,ASSISTANT_NAME,PROJECT_NAME,SUPPORT_GROUP,UPDATES_CHANNEL
-await message.reply_sticker("CAACAgUAAxkBAAITxGDHJXMsNfq_eRHFXNz41dgWuxohAAI3AwACjTI5Vo8E_nseC74dHwQ")
 class Messages():
       START_MSG = "**Hello 👋 [{}](tg://user?id={})!**\n <b> I can play music in voice chats of Telegeam Groups & Channels.\nI have a lot of cool feature that will amaze you!\n\nTo add in your group contact us at @ankivectorUpdates .\n\nHit /help list of available commands. </b>"
       HELP_MSG = [
