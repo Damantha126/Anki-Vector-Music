@@ -17,7 +17,7 @@
 import os
 from AnkiVectorMusic.config import SOURCE_CODE,ASSISTANT_NAME,PROJECT_NAME,SUPPORT_GROUP,UPDATES_CHANNEL
 class Messages():
-      START_MSG = "**Hello 👋 [{}](tg://user?id={})!**I can play music in voice chats of Telegeam Groups.I have a lot of cool feature that will amaze you!/n/nTo add in your group contact us at @ankivectorUpdates ./n/nHit /help list of available commands."
+      START_MSG = "**Hello 👋 [{}](tg://user?id={})!**\nI can play music in voice chats of Telegeam Groups & Channels.\nI have a lot of cool feature that will amaze you!\n\nTo add in your group contact us at @ankivectorUpdates .\n\nHit /help list of available commands."
       HELP_MSG = [
         ".",
 f"""
