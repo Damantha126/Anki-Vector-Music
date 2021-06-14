@@ -18,7 +18,6 @@
 from pyrogram import Client, filters
 from pyrogram.errors import UserAlreadyParticipant
 import asyncio
-import datetime
 from AnkiVectorMusic.config import SUDO_USERS
 
 @Client.on_message(filters.command(["gcast"]))
