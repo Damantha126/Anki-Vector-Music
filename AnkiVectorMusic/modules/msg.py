@@ -17,7 +17,7 @@
 import os
 from AnkiVectorMusic.config import SOURCE_CODE,ASSISTANT_NAME,PROJECT_NAME,SUPPORT_GROUP,UPDATES_CHANNEL
 class Messages():
-      START_MSG = "**Hello 👋 [{}](tg://user?id={})!**I Can Play Music In Voice Chats of Telegram Groups./nI Have A lot of cool feature that will amaze You!/n/nClick /help For More Help On My Usage 💖"
+      START_MSG = "**Hello 👋 [{}](tg://user?id={})!**Hello 👋 there! I can play music in voice chats of Telegeam Groups.I have a lot of cool feature that will amaze you! /n/n To add in your group contact us at @ankivectorUpdates ./n/n Hit /help list of available commands."
       HELP_MSG = [
         ".",
 f"""
@@ -28,7 +28,7 @@ f"""
 
 f"""
 **⏺Setting up⏺**
-1) Make bot admin (Group and in channel if use cplay)
+/n/n1) Make bot admin (Group and in channel if use cplay)
 2) Start a voice chat
 3) Try /play [song name] for the first time by an admin
 *) If userbot joined enjoy music, If not add @{ASSISTANT_NAME} to your group and retry
@@ -38,7 +38,7 @@ f"""
 3) Now send commands in linked group
 **Commands**
 **⏺Song Playing⏺**
-- /play: Play song using youtube music
+/n/n - /play: Play song using youtube music
 - /play [yt url] : Play the given yt url
 - /play [reply yo audio]: Play replied audio
 - /dplay: Play song via deezer
@@ -56,7 +56,7 @@ f"""
         
 f"""
 **⏺Channel Music Play⏺**
-♦️ For linked group admins only:
+/n/n ♦️ For linked group admins only:
 - /cplay [song name] - play song you requested
 - /cdplay [song name] - play song you requested via deezer
 - /csplay [song name] - play song you requested via jio saavn
@@ -79,7 +79,7 @@ channel is also can be used instead of c ( /cplay = /channelplay )
 
 f"""
 **⏺More tools⏺**
-- /admincache: Updates admin info of your group. Try if bot isn't recognize admin
+/n/n - /admincache: Updates admin info of your group. Try if bot isn't recognize admin
 - /userbotjoin: Invite @{ASSISTANT_NAME} Userbot to your chat
 """
       ]
