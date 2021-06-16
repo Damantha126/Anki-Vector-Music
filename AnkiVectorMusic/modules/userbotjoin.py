@@ -1,5 +1,5 @@
-# AnkiVectorMusic (Telegram bot project )
-# Copyright (C) 2021  Damantha_Jasinghe 
+# Daisyxmusic (Telegram bot project )
+# Copyright (C) 2021  Damantha_Jasinghe
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -38,14 +38,14 @@ async def addchannel(client, message):
     try:
         user = await USER.get_me()
     except:
-        user.first_name = "AnkiVectorMusic"
+        user.first_name = "AnkivectorMusicbot"
 
     try:
         await USER.join_chat(invitelink)
         await USER.send_message(message.chat.id, "I joined here as you requested")
     except UserAlreadyParticipant:
         await message.reply_text(
-            "<b>helper Userbot already in your chat</b>",
+            "<b>helper already in your chat</b>",
         )
     except Exception as e:
         print(e)
@@ -76,8 +76,8 @@ async def bye(client, message):
     if message.from_user.id in SUDO_USERS:
         left=0
         failed=0
-        await message.reply("Assistant Leaving all chats")
-        for dialog in USER.iter_dialogs():
+        lol = await message.reply("Assistant Leaving all chats")
+        async for dialog in USER.iter_dialogs():
             try:
                 await USER.leave_chat(dialog.chat.id)
                 left = left+1
@@ -112,7 +112,7 @@ async def addcchannel(client, message):
     try:
         user = await USER.get_me()
     except:
-        user.first_name = "AnkiVectorMusic"
+        user.first_name = "AnkivectorMusicbot"
 
     try:
         await USER.join_chat(invitelink)
