@@ -2,8 +2,13 @@
   "name": "Anki Vector Music",
   "description": "Open-Source bot to play songs in your Telegram's Group Voice Chat. Powered by PyTgCalls.",
   "keywords": ["music", "voicechat", "telegram"],
-  "repository": "https://github.com/Damantha126/AnkiVectorMusic",
+  "repository": "https://github.com/Damantha126/Anki-Vector-Music",
   "stack": "container",
+  "buildpacks": [
+   {
+     "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+   }   
+  ],        
   "env": {
     "SESSION_NAME": {
       "description": "Pyrogram session string",
@@ -15,10 +20,6 @@
     },
     "BOT_USERNAME": {
       "description": "Your bot's username without @",
-      "required": true
-    },
-    "BOTS_CHANNEL": {
-      "description": "Bots Channel Name",
       "required": true
     },
     "BOT_NAME": {
@@ -34,7 +35,7 @@
     "PROJECT_NAME": {
       "description": "Your MusicPlayer project Name.",
       "required": false,
-      "value": "Anki Product"
+      "value": "Anki Vector Updates"
     },
     "ASSISTANT_NAME": {
       "description": "Your MusicPlayer's assistant Username without @.",
@@ -48,7 +49,7 @@
     "BG_IMAGE": {
       "description": "BG image of bot (Use transparent one) [IGNORE].",
       "required": false,
-      "value": "https://telegra.ph/file/94f98b19b2cd42aa50f4c.jpg"
+      "value": "https://transfer.sh/1TZmz3J/6_15_2021%209_37_44%20PM.png"
     },     
     "UPDATES_CHANNEL": {
       "description": "Updates Channel without @ [Leave this if you don't have one].",
@@ -75,7 +76,7 @@
     "DURATION_LIMIT": {
       "description": "Max audio duration limit for downloads (minutes).",
       "required": true,
-      "value": "10"
+      "value": "15"
     }
   }
 }
