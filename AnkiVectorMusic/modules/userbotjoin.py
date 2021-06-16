@@ -1,4 +1,4 @@
-# Daisyxmusic (Telegram bot project )
+# AnkiVectorMusic (Telegram bot project )
 # Copyright (C) 2021  Damantha_Jasinghe
 
 # This program is free software: you can redistribute it and/or modify
