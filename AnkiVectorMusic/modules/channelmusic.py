@@ -1,5 +1,5 @@
 # AnkiVectorMusic (Telegram bot project)
-# Copyright (C) 2021  Inukaasith
+# Copyright (C) 2021  Damantha_Jasinghe
 # Copyright (C) 2021  TheHamkerCat (Python_ARQ)
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -32,7 +32,7 @@ from pyrogram.types import Voice
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from Python_ARQ import ARQ
 from youtube_search import YoutubeSearch
-from AnkiVectorMusic.modules.play import generate_cover
+from DaisyXMusic.modules.play import generate_cover
 from AnkiVectorMusic.modules.play import arq
 from AnkiVectorMusic.modules.play import cb_admin_check
 from AnkiVectorMusic.modules.play import transcode
@@ -595,7 +595,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="▶️ **Playing** the song requested by {} via Youtube Music 🅾️ in Linked Channel".format(
+            caption="▶️ **Playing** the song requested by {} via Youtube Music 🅾️  in Linked Channel".format(
                 message.from_user.mention()
             ),
         )
@@ -657,7 +657,7 @@ async def deezer(client: Client, message_: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>⚠️ Flood Wait Error ⚠️ \nUser {user.first_name} couldn't join your channel due to heavy requests for userbot! Make sure user is not banned in channel."
+                        f"<b>⚠️ Flood Wait Error ⚠️ \nUser {user.first_name} couldn't join your channel due to heavy requests for userbot! Make sure user is not banned in group."
                         "\n\nOr manually add assistant to your Group and try again</b>",
                     )
     try:
@@ -755,7 +755,7 @@ async def jiosaavn(client: Client, message_: Message):
     try:
         user = await USER.get_me()
     except:
-        user.first_name = "DaisyMusic"
+        user.first_name = "AnkiVectorMusicbot"
     usar = user
     wew = usar.id
     try:
@@ -788,8 +788,8 @@ async def jiosaavn(client: Client, message_: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b.⚠️ Flood Wait Error ⚠️ \nUser {user.first_name} couldn't join your channel due to heavy requests for userbot! Make sure user is not banned in group."
-                        "\n\nOr manually add @AnkivectorMusicbot to your Group and try again</b>",
+                        f"<b>⚠️ Flood Wait Error ⚠️ \nUser {user.first_name} couldn't join your channel due to heavy requests for userbot! Make sure user is not banned in group."
+                        "\n\nOr manually add assistant to your Group and try again</b>",
                     )
     try:
         await USER.get_chat(chid)
