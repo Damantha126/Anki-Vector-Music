@@ -617,6 +617,7 @@ async def play(_, message: Message):
           await lel.edit("Give me something to play")
         # Looks like hell. Aren't it?? FUCK OFF
         try:
+            photo = "https://telegra.ph/file/94f98b19b2cd42aa50f4c.jpg"
             toxxt = "**Select the song you want to [play](https://telegra.ph/file/94f98b19b2cd42aa50f4c.jpg)**\n\n"
             j = 0
             useer=user_name
