@@ -83,6 +83,7 @@ def convert_seconds(seconds):
     seconds %= 60
     return "%02d:%02d" % (minutes, seconds)
 
+BOT_IMG = "https://telegra.ph/file/94f98b19b2cd42aa50f4c.jpg"
 
 # Convert hh:mm:ss to seconds
 def time_to_seconds(time):
@@ -617,7 +618,8 @@ async def play(_, message: Message):
           await lel.edit("Give me something to play")
         # Looks like hell. Aren't it?? FUCK OFF
         try:
-            toxxt = "https://telegra.ph/file/94f98b19b2cd42aa50f4c.jpg"
+            update.effective_message.reply_photo(
+            BOT_IMG,
             toxxt = "**Select the song you want to [play](https://telegra.ph/file/94f98b19b2cd42aa50f4c.jpg)**\n\n"
             j = 0
             useer=user_name
