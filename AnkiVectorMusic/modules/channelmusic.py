@@ -32,7 +32,7 @@ from pyrogram.types import Voice
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from Python_ARQ import ARQ
 from youtube_search import YoutubeSearch
-from DaisyXMusic.modules.play import generate_cover
+from AnkiVectorMusic.modules.play import generate_cover
 from AnkiVectorMusic.modules.play import arq
 from AnkiVectorMusic.modules.play import cb_admin_check
 from AnkiVectorMusic.modules.play import transcode
