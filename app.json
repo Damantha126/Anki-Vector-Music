@@ -1,5 +1,6 @@
 {
   "name": "Anki Vector Music",
+  "logo": "https://telegra.ph/file/e10a45d0433a1ab6fed7b.jpg",
   "description": "Open-Source bot to play songs in your Telegram's Group Voice Chat. Powered by PyTgCalls.",
   "keywords": ["music", "voicechat", "telegram"],
   "repository": "https://github.com/Damantha126/Anki-Vector-Music",
@@ -35,7 +36,7 @@
     "PROJECT_NAME": {
       "description": "Your MusicPlayer project Name.",
       "required": false,
-      "value": "Anki Vector Updates"
+      "value": "DT Project"
     },
     "ASSISTANT_NAME": {
       "description": "Your MusicPlayer's assistant Username without @.",
@@ -49,12 +50,12 @@
     "BG_IMAGE": {
       "description": "BG image of bot (Use transparent one) [IGNORE].",
       "required": false,
-      "value": "https://transfer.sh/1TZmz3J/6_15_2021%209_37_44%20PM.png"
+      "value": "https://telegra.ph/file/d42b1a9fcd8f735c4be8b.png"
     },     
     "UPDATES_CHANNEL": {
       "description": "Updates Channel without @ [Leave this if you don't have one].",
       "required": false,
-      "value": "ankivectorUpdates"
+      "value": "AnkiVectorUpdates"
     },    
     "API_ID": {
       "description": "App ID from my.telegram.org/apps",
@@ -76,7 +77,7 @@
     "DURATION_LIMIT": {
       "description": "Max audio duration limit for downloads (minutes).",
       "required": true,
-      "value": "15"
+      "value": "10"
     }
   }
 }
