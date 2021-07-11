@@ -1,4 +1,6 @@
-<h1 align="centre">Anki Vector Music 🎵</h1>
+<h1 align="centre">Anki Vector Music 🎵</h1>  
+
+![GitHub repo size](https://img.shields.io/github/repo-size/Damantha126/Anki-Vector-Music?label=Repo%20Size)
 
 ### A bot that can play music on Telegram Group and Channel Voice Chats
 ### Available on telegram as [@Anki Vector Music](https://t.me/TheAnkiVectorMusicBot)
