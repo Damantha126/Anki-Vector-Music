@@ -20,7 +20,7 @@ from AnkiVectorMusic.services.callsmusic import client as pakaya
 from AnkiVectorMusic.services.helpers.database import db
 from AnkiVectorMusic.services.helpers.dbthings import main_broadcast_handler
 from AnkiVectorMusic.modules.song import humanbytes, get_text
-from AnkiVectorMusic.config import BOT_USERNAME, BOT_OWNER, UPSTREAM_REPO, U_BRANCH, HEROKU_URL, HEROKU_API_KEY, HEROKU_APP_NAME, SUDO_USERS
+from AnkiVectorMusic.config import BOT_USERNAME, BOT_OWNER, SOURCE_CODE, U_BRANCH, HEROKU_URL, HEROKU_API_KEY, HEROKU_APP_NAME, SUDO_USERS
 
 
 # Stats Of Your Bot
@@ -168,7 +168,7 @@ async def _banned_usrs(_, m: Message):
 
 
 # Updator
-REPO_ = UPSTREAM_REPO
+REPO_ = SOURCE_CODE
 BRANCH_ = U_BRANCH
 
 @Client.on_message(filters.command("update") & filters.user(BOT_OWNER))
