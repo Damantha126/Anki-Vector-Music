@@ -17,3 +17,7 @@ future
 psutil
 wget
 heroku3
+motor
+dnspython
+bs4
+gitpython
