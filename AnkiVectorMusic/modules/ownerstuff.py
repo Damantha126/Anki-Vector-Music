@@ -16,11 +16,11 @@ from os import environ, execle, path, remove
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
-from callsmusic import client as pakaya
-from helpers.database import db
-from helpers.dbthings import main_broadcast_handler
-from handlers.musicdwn import humanbytes, get_text
-from config import BOT_USERNAME, BOT_OWNER, UPSTREAM_REPO, U_BRANCH, HEROKU_URL, HEROKU_API_KEY, HEROKU_APP_NAME, SUDO_USERS
+from AnkiVectorMusic.services.callsmusic import client as pakaya
+from AnkiVectorMusic.services.helpers.database import db
+from AnkiVectorMusic.services.helpers.dbthings import main_broadcast_handler
+from AnkiVectorMusic.modules.song import humanbytes, get_text
+from AnkiVectorMusic.config import BOT_USERNAME, BOT_OWNER, UPSTREAM_REPO, U_BRANCH, HEROKU_URL, HEROKU_API_KEY, HEROKU_APP_NAME, SUDO_USERS
 
 
 # Stats Of Your Bot
