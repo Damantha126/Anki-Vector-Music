@@ -79,4 +79,3 @@ class Database:
 db = Database(DATABASE_URL, BOT_USERNAME)
 # Database for Anti-Cmd (I know what you are thinking about! but IDC)
 mongo_db_lmao = MongoClient(DATABASE_URL)
-dcmdb = mongo_db_lmao.handlers
