@@ -77,35 +77,7 @@
     "DURATION_LIMIT": {
       "description": "Max audio duration limit for downloads (minutes).",
       "required": true,
-      "value": "10"
-    },
-    "BOT_OWNER": {
-      "description": "Telegram Id Of yours!",
-      "required": true   
-    },
-    "LOG_CHANNEL": {
-      "description": "Log Channel Where Bot Logs Go!",
-      "required": true,
-      "value": ""
-    },
-    "DATABASE_URL": {
-      "description": "Mongo Db url. Get it from https://www.mongodb.com/ OR https://www.youtube.com/watch?v=YjHfBW8RxiU ",
-      "required": true
-    },
-    "ARQ_API_KEY": {
-      "description": "Your ARQ API key! Get your own with @ARQRobot !",
-      "required": false,
-      "value": ""
-    },
-    "HEROKU_APP_NAME": {
-      "description": "Your Heroku App Name!",
-      "required": true,
-      "value": ""
-    },
-    "HEROKU_API_KEY": {
-      "description": "Your Heroku Api Key!",
-      "required": true,
-      "value": ""
+      "value": "60"
     }
   }
 }
