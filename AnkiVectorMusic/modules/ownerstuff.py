@@ -17,8 +17,8 @@ from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
 from AnkiVectorMusic.services.callsmusic import client as pakaya
-from AnkiVectorMusic.services.helpers.database import db
-from AnkiVectorMusic.services.helpers.dbthings import main_broadcast_handler
+from AnkiVectorMusic.helpers.database import db
+from AnkiVectorMusic.helpers.dbthings import main_broadcast_handler
 from AnkiVectorMusic.modules.song import humanbytes, get_text
 from AnkiVectorMusic.config import BOT_USERNAME, BOT_OWNER, SOURCE_CODE, U_BRANCH, HEROKU_URL, HEROKU_API_KEY, HEROKU_APP_NAME, SUDO_USERS
 
