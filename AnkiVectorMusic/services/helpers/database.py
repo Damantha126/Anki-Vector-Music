@@ -1,7 +1,7 @@
 import datetime
 import motor.motor_asyncio
 
-from config import DATABASE_URL, BOT_USERNAME
+from AnkiVectorMusic.config import DATABASE_URL, BOT_USERNAME
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 
 class Database:
