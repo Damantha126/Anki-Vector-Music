@@ -19,8 +19,6 @@ import os
 from os import getenv
 
 from dotenv import load_dotenv
-from AnkiVectorMusic.helpers.modhelps import fetch_heroku_git_url
-
 
 if os.path.exists("local.env"):
     load_dotenv("local.env")
@@ -46,4 +44,3 @@ LOG_GRP = getenv("LOG_GRP", None)
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ !").split())
 
 SUDO_USERS = list(map(int, getenv("SUDO_USERS").split()))
-
