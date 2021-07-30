@@ -25,7 +25,7 @@ if os.path.exists("local.env"):
 que = {}
 SESSION_NAME = getenv("SESSION_NAME", "")
 BOT_TOKEN = getenv("BOT_TOKEN", "")
-BOT_NAME = getenv("BOT_NAME", "")
+BOT_NAME = getenv("BOT_NAME", "Anki Vector")
 UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "AnkiVectorUpdates")
 BG_IMAGE = getenv("BG_IMAGE", "https://telegra.ph/file/d42b1a9fcd8f735c4be8b.png")
 admins = {}
