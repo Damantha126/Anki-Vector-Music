@@ -14,11 +14,13 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
 import requests
 from pyrogram import Client as Bot
 
-from AnkiVectorMusic.config import API_HASH, API_ID, BG_IMAGE, BOT_TOKEN
+from AnkiVectorMusic.config import API_HASH
+from AnkiVectorMusic.config import API_ID
+from AnkiVectorMusic.config import BG_IMAGE
+from AnkiVectorMusic.config import BOT_TOKEN
 from AnkiVectorMusic.services.callsmusic import run
 
 response = requests.get(BG_IMAGE)
