@@ -1,1 +1,3 @@
-from AnkiVectorMusic.services.downloaders.youtube import download
+from AnkiVectorMusic.services.downloaders import youtube
+
+__all__ = ["youtube"]
