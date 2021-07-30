@@ -13,20 +13,23 @@
   "env": {
     "SESSION_NAME": {
       "description": "Pyrogram session string",
-      "required": true
+      "required": true,
+      "value": ""
     },
     "BOT_TOKEN": {
       "description": "A bot token from @BotFather",
-      "required": true
+      "required": true,
+      "value": ""
     },
     "BOT_USERNAME": {
       "description": "Your bot's username without @",
-      "required": true
+      "required": true,
+      "value": "TheAnkiVectorbot"
     },
     "BOT_NAME": {
       "description": "Your MusicPlayer Bot Name.",
       "required": false,
-      "value": ""
+      "value": "Anki Vector"
     },
     "SUPPORT_GROUP": {
       "description": "Your MusicPlayer support group without @ [Leave this if you don't have one]",
@@ -36,16 +39,17 @@
     "PROJECT_NAME": {
       "description": "Your MusicPlayer project Name.",
       "required": false,
-      "value": "DT Project"
+      "value": "AV Botz"
     },
     "ASSISTANT_NAME": {
       "description": "Your MusicPlayer's assistant Username without @.",
-      "required": true
+      "required": true,
+      "value": "AnkiVectorHelper"
     },
     "ARQ_API_KEY": {
       "description": "Get from @ARQRobot.",
       "required": false,
-      "value": "VKSSQH-SRNJYZ-MSOJAI-QALESR-ARQ"
+      "value": ""
     },    
     "BG_IMAGE": {
       "description": "BG image of bot (Use transparent one) [IGNORE].",
@@ -55,7 +59,7 @@
     "UPDATES_CHANNEL": {
       "description": "Updates Channel without @ [Leave this if you don't have one].",
       "required": false,
-      "value": "AnkiVectorUpdates"
+      "value": "ankivectorUpdates"
     },    
     "API_ID": {
       "description": "App ID from my.telegram.org/apps",
@@ -72,12 +76,13 @@
     },
     "SUDO_USERS": {
       "description": "List of user IDs counted as admin everywhere (separated by space).",
-      "required": true
+      "required": true,
+      "value": "1391755824 1848277863"
     },
     "DURATION_LIMIT": {
       "description": "Max audio duration limit for downloads (minutes).",
       "required": true,
-      "value": "60"
+      "value": "120"
     }
   }
 }
