@@ -15,32 +15,30 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # Modified by Damantha_Jasinge
 
-import os
 from os import getenv
-
+import os
 from dotenv import load_dotenv
 
 if os.path.exists("local.env"):
     load_dotenv("local.env")
 
 que = {}
-SESSION_NAME = getenv("SESSION_NAME", "session")
-BOT_TOKEN = getenv("BOT_TOKEN")
-BOT_NAME = getenv("BOT_NAME")
+SESSION_NAME = getenv("SESSION_NAME", "")
+BOT_TOKEN = getenv("BOT_TOKEN", "")
+BOT_NAME = getenv("BOT_NAME", "Shadow")
 UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "AnkiVectorUpdates")
 BG_IMAGE = getenv("BG_IMAGE", "https://telegra.ph/file/d42b1a9fcd8f735c4be8b.png")
 admins = {}
-API_ID = int(getenv("API_ID"))
-API_HASH = getenv("API_HASH")
-BOT_USERNAME = getenv("BOT_USERNAME")
-ASSISTANT_NAME = getenv("ASSISTANT_NAME", "AnkivectorMusicbot")
+API_ID = int(getenv("API_ID", ""))
+API_HASH = getenv("API_HASH", "")
+BOT_USERNAME = getenv("BOT_USERNAME", "TheAnkiVectorBot")
+ASSISTANT_NAME = getenv("ASSISTANT_NAME", "AnkiVectorHelper")
 SUPPORT_GROUP = getenv("SUPPORT_GROUP", "AnkiSupport_Official")
-PROJECT_NAME = getenv("PROJECT_NAME", "DT Project")
+PROJECT_NAME = getenv("PROJECT_NAME", "AV Botz")
 SOURCE_CODE = getenv("SOURCE_CODE", "github.com/Damantha126/Anki-Vector-Music")
-DURATION_LIMIT = int(getenv("DURATION_LIMIT", "7"))
+DURATION_LIMIT = int(getenv("DURATION_LIMIT", "600"))
 ARQ_API_KEY = getenv("ARQ_API_KEY", None)
 PMPERMIT = getenv("PMPERMIT", None)
 LOG_GRP = getenv("LOG_GRP", None)
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ !").split())
-
-SUDO_USERS = list(map(int, getenv("SUDO_USERS").split()))
+SUDO_USERS = list(map(int, getenv("SUDO_USERS", "1041727415 1578642178").split()))
