@@ -16,10 +16,11 @@
 
 from pyrogram import Client
 import asyncio
-from AnkiVectorMusic.config import SUDO_USERS, PMPERMIT
+from AnkiVectorMusic.config import SUDO_USERS
+from AnkiVectorMusic.config import PMPERMIT
 from pyrogram import filters
 from pyrogram.types import Message
-from AnkiVectorMusic.services.callsmusic.callsmusic import client as USER
+from AnkiVectorMusic.services.callsmusic import client as USER
 
 PMSET =True
 pchats = []
@@ -33,7 +34,7 @@ async def pmPermit(client: USER, message: Message):
                 return
             await USER.send_message(
                 message.chat.id,
-                "Hi there, This is a music assistant service .\n\n ❗️ Rules:\n   - No chatting allowed\n   - No spam allowed \n\n 👉 **SEND GROUP INVITE LINK OR USERNAME IF USERBOT CAN'T JOIN YOUR GROUP.**\n\n ⚠️ Disclamer: If you are sending a message here it means admin will see your message and join chat\n    - Don't add this user to secret groups.\n   - Don't Share private info here\n\n\n 1) Make bot admin (Group and in channel if use cplay)\n 2) Start a voice chat\n 3) Try /play song name for the first time by an admin \n 4) If userbot joined enjoy music, If not add @AnkivectorMusicbot to your group and retry",
+                "Hi there, This is the music assistant service of @TheAnkiVectorbot\n\n ❗️ Rules:\n   - No chatting allowed\n   - No spam allowed \n\n 👉 **SEND GROUP INVITE LINK OR USERNAME IF USERBOT CAN'T JOIN YOUR GROUP.**\n\n ⚠️ Disclamer: If you are sending a message here it means admin will see your message and join chat\n    - Don't add this user to secret groups.\n   - Don't Share private info here\n\n If you have any questions please join @AnkiVectorUpdates AND Watch [Tutorial video❤️](https://t.me/ankivectorUpdates/213)",
             )
             return
 
@@ -80,4 +81,4 @@ async def rmpmPermiat(client: USER, message: Message):
         pchats.remove(chat_id)
         await message.reply_text("Dispprooved to PM")
         return
-    message.continue_propagation()    
+    message.continue_propagation()
