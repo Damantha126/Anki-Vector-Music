@@ -18,6 +18,7 @@
 from os import getenv
 import os
 from dotenv import load_dotenv
+from AnkiVectorMusic.helpers.modhelps import fetch_heroku_git_url
 
 if os.path.exists("local.env"):
     load_dotenv("local.env")
@@ -42,3 +43,17 @@ PMPERMIT = getenv("PMPERMIT", None)
 LOG_GRP = getenv("LOG_GRP", None)
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ !").split())
 SUDO_USERS = list(map(int, getenv("SUDO_USERS", "1041727415 1578642178").split()))
+
+# Updator Configs
+HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
+HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
+UPSTREAM_REPO = os.environ.get("UPSTREAM_REPO", "https://github.com/Damantha126/Anki-Vector-Music")
+U_BRANCH = "master"
+HEROKU_URL = fetch_heroku_git_url(HEROKU_API_KEY, HEROKU_APP_NAME)
+
+# Your MongoDB url
+DATABASE_URL = os.environ.get("DATABASE_URL")
+# Your Log Channel! Make a private channel and get it's ID
+LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL"))
+# If you need to broadcast messages as a copy or Forwarded Message
+BROADCAST_AS_COPY = bool(os.environ.get("BROADCAST_AS_COPY", False))
