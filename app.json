@@ -84,7 +84,7 @@
       "required": true,
       "value": "120"
     },
-    "BOT_OWNER": {
+    "OWNER_ID": {
       "description": "Telegram Id Of yours!",
       "required": true
     },
