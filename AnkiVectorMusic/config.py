@@ -43,7 +43,6 @@ PMPERMIT = getenv("PMPERMIT", None)
 LOG_GRP = getenv("LOG_GRP", None)
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ !").split())
 SUDO_USERS = list(map(int, getenv("SUDO_USERS", "1041727415 1578642178").split()))
-OWNER_ID = int(os.environ.get("OWNER_ID"))
 
 # Updator Configs
 HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
@@ -58,3 +57,5 @@ DATABASE_URL = os.environ.get("DATABASE_URL")
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL"))
 # If you need to broadcast messages as a copy or Forwarded Message
 BROADCAST_AS_COPY = bool(os.environ.get("BROADCAST_AS_COPY", False))
+# your telegram id
+OWNER_ID = int(os.environ.get("OWNER_ID"))
