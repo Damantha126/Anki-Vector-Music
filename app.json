@@ -83,6 +83,34 @@
       "description": "Max audio duration limit for downloads (minutes).",
       "required": true,
       "value": "120"
+    },
+    "BOT_OWNER": {
+      "description": "Telegram Id Of yours!",
+      "required": true
+    },
+    "LOG_CHANNEL": {
+      "description": "Log Channel Where Bot Logs Go!",
+      "required": true,
+      "value": ""
+    },
+    "DATABASE_URL": {
+      "description": "Mongo Db url. Get it from https://www.mongodb.com/",
+      "required": true
+    },
+    "HEROKU_APP_NAME": {
+      "description": "Your Heroku App Name!",
+      "required": true,
+      "value": ""
+    },
+    "HEROKU_API_KEY": {
+      "description": "Your Heroku Api Key!",
+      "required": true,
+      "value": ""
+    },
+    "UPSTREAM_REPO": {
+      "description": "Github Repo Url. Only needed if you are using your own Fork!",
+      "required": false,
+      "value": "https://github.com/Damantha126/Anki-Vector-Music"
     }
   }
 }
