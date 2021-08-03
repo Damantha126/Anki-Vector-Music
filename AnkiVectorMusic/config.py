@@ -58,4 +58,4 @@ LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL"))
 # If you need to broadcast messages as a copy or Forwarded Message
 BROADCAST_AS_COPY = bool(os.environ.get("BROADCAST_AS_COPY", False))
 # your telegram id
-OWNER_ID = int(os.environ.get("OWNER_ID"))
+OWNER_ID = int(os.environ.get("OWNER_ID", ""))
