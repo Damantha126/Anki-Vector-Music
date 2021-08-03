@@ -17,3 +17,8 @@ future
 psutil
 wget
 tswift
+motor
+dnspython
+bs4
+heroku3
+gitpython
