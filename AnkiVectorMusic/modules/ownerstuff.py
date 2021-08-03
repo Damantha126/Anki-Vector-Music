@@ -18,7 +18,7 @@ from os import environ, execle, path, remove
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
-from callsmusic import client as pakaya
+from AnkiVectorMusic.callsmusic import client as pakaya
 from AnkiVectorMusic.helpers.database import db
 from AnkiVectorMusic.helpers.dbthings import main_broadcast_handler
 from AnkiVectorMusic.modules.song import humanbytes, get_text
