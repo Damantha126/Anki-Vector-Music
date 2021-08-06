@@ -26,7 +26,7 @@ from AnkiVectorMusic.config import BOT_USERNAME, OWNER_ID, UPSTREAM_REPO, U_BRAN
 
 
 # Stats Of Your Bot
-@Client.on_message(filters.command("stats") & filters.user(OWNER_ID))
+@Client.on_message(filters.command("vcstats") & filters.user(OWNER_ID))
 async def botstats(_, message: Message):
     total, used, free = shutil.disk_usage(".")
     total = humanbytes(total)
@@ -44,12 +44,12 @@ async def botstats(_, message: Message):
 
 
 # Broadcast message to users (This will Broadcast using Bot with Db)
-@Client.on_message(filters.private & filters.command("broadcast") & filters.user(OWNER_ID) & filters.reply)
+@Client.on_message(filters.private & filters.command("vcbroadcast") & filters.user(OWNER_ID) & filters.reply)
 async def broadcast_handler_open(_, m: Message):
     await main_broadcast_handler(m, db)
 
 # Broadcast message to users (This will Broadcast using streamer account without db)
-@Client.on_message(filters.command(["chatcast"]))
+@Client.on_message(filters.command(["vcchatcast"]))
 async def chatcast(_, message: Message):
     sent=0
     failed=0
@@ -75,7 +75,7 @@ async def chatcast(_, message: Message):
 
 
 # Ban User
-@Client.on_message(filters.private & filters.command("ban") & filters.user(OWNER_ID))
+@Client.on_message(filters.private & filters.command("vcban") & filters.user(OWNER_ID))
 async def ban(c: Client, m: Message):
     if len(m.command) == 1:
         await m.reply_text(
@@ -112,7 +112,7 @@ async def ban(c: Client, m: Message):
 
 
 # Unban User
-@Client.on_message(filters.private & filters.command("unban") & filters.user(OWNER_ID))
+@Client.on_message(filters.private & filters.command("vcunban") & filters.user(OWNER_ID))
 async def unban(c: Client, m: Message):
     if len(m.command) == 1:
         await m.reply_text(
@@ -147,7 +147,7 @@ async def unban(c: Client, m: Message):
 
 
 # Banned User List
-@Client.on_message(filters.private & filters.command("banlist") & filters.user(OWNER_ID))
+@Client.on_message(filters.private & filters.command("vcbanlist") & filters.user(OWNER_ID))
 async def _banned_usrs(_, m: Message):
     all_banned_users = await db.get_all_banned_users()
     banned_usr_count = 0
@@ -173,7 +173,7 @@ async def _banned_usrs(_, m: Message):
 REPO_ = UPSTREAM_REPO
 BRANCH_ = U_BRANCH
 
-@Client.on_message(filters.command("update") & filters.user(OWNER_ID))
+@Client.on_message(filters.command("vcupdate") & filters.user(OWNER_ID))
 async def updatebot(_, message: Message):
     msg = await message.reply_text("`Updating Module is Starting! Please Wait...`")
     try:
@@ -286,7 +286,7 @@ def _check_heroku(func):
 
     return heroku_cli
 
-@Client.on_message(filters.command("logs") & filters.user(OWNER_ID))
+@Client.on_message(filters.command("vclogs") & filters.user(OWNER_ID))
 @_check_heroku
 async def logswen(client: Client, message: Message, happ):
     msg = await message.reply_text("`Please Wait For a Moment!`")
@@ -296,7 +296,7 @@ async def logswen(client: Client, message: Message, happ):
 
 
 # Restart Your Bot
-@Client.on_message(filters.command("restart") & filters.user(OWNER_ID))
+@Client.on_message(filters.command("vcrestart") & filters.user(OWNER_ID))
 @_check_heroku
 async def restart(client: Client, message: Message, hap):
     msg = await message.reply_text("`Restarting Now! Please wait...`")
@@ -304,7 +304,7 @@ async def restart(client: Client, message: Message, hap):
 
 
 # Set Heroku Var
-@Client.on_message(filters.command("setvar") & filters.user(OWNER_ID))
+@Client.on_message(filters.command("vcsetvar") & filters.user(OWNER_ID))
 @_check_heroku
 async def setvar(client: Client, message: Message, app_):
     msg = await message.reply_text(message, "`Please Wait...!`")
@@ -326,7 +326,7 @@ async def setvar(client: Client, message: Message, app_):
 
 
 # Delete Heroku Var
-@Client.on_message(filters.command("delvar") & filters.user(OWNER_ID))
+@Client.on_message(filters.command("vcdelvar") & filters.user(OWNER_ID))
 @_check_heroku
 async def delvar(client: Client, message: Message, app_):
     msg = await message.reply_text(message, "`Please Wait...!`")
