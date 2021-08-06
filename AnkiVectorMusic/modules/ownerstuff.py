@@ -1,4 +1,4 @@
-# Credits @AbirHasan2005, @DevsExpo and DaisyXMusic
+# Credits @AbirHasan2005, DevsExpo and DaisyXMusic
 
 import sys
 import os
