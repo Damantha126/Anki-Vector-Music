@@ -22,3 +22,4 @@ dnspython
 bs4
 heroku3
 gitpython
+Telethon
