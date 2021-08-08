@@ -7,7 +7,7 @@ import requests
 
 from AnkiVectorMusic.config import telethn as borg, HEROKU_APP_NAME, HEROKU_API_KEY, OWNER_ID
 from AnkiVectorMusic.events import register
-from AnkiVector.helpers.heroku_helper import HerokuHelper
+from AnkiVectorMusic.helpers.heroku_helper import HerokuHelper
 
 heroku_api = "https://api.heroku.com"
 Heroku = heroku3.from_key(HEROKU_API_KEY)
