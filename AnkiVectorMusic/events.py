@@ -8,11 +8,11 @@ from pathlib import Path
 from telethon import events
 
 from pymongo import MongoClient
-from AnkiVectorMusic.config import MONGO_DB_URI
+from AnkiVectorMusic.config import DATABASE_URL
 from AnkiVectorMusic.config import telethn
 
 client = MongoClient()
-client = MongoClient(MONGO_DB_URI)
+client = MongoClient(DATABASE_URL)
 db = client["darkuserbot"]
 gbanned = db.gban
 
@@ -184,8 +184,8 @@ def load_module(shortname):
         import importlib
         import MashaRoBot.events
 
-        path = Path(f"AnkiVector/modules/{shortname}.py")
-        name = "AnkiVector.modules.{}".format(shortname)
+        path = Path(f"AnkiVectorMusic/modules/{shortname}.py")
+        name = "AnkiVectorMusic.modules.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
@@ -194,7 +194,7 @@ def load_module(shortname):
         import importlib
         import AnkiVector.events
 
-        path = Path(f"AnkiVector/modules/{shortname}.py")
+        path = Path(f"AnkiVectorMusic/modules/{shortname}.py")
         name = "AnkiVector.modules.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
@@ -203,11 +203,11 @@ def load_module(shortname):
         mod.tbot = telethn
         mod.logger = logging.getLogger(shortname)
         spec.loader.exec_module(mod)
-        sys.modules["AnkiVector.modules." + shortname] = mod
+        sys.modules["AnkiVectorMusic.modules." + shortname] = mod
         print("Successfully imported " + shortname)
 
 
-path = "AnkiVector/modules/*.py"
+path = "AnkiVector/modulesMusic/*.py"
 files = glob.glob(path)
 for name in files:
     with open(name) as f:
