@@ -18,6 +18,7 @@
 from os import getenv
 import os
 from dotenv import load_dotenv
+from telethon import TelegramClient
 from AnkiVectorMusic.helpers.modhelps import fetch_heroku_git_url
 
 if os.path.exists("local.env"):
