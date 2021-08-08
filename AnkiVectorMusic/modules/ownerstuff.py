@@ -1,342 +1,232 @@
-# Credits @AbirHasan2005, DevsExpo and DaisyXMusic
-
-import sys
-import os
-import heroku3
-import time
-import traceback
 import asyncio
-import shutil
-import psutil
+import math
+import os
 
-from pyrogram import Client, filters
-from pyrogram.types import Message, Dialog, Chat
-from pyrogram.errors import UserAlreadyParticipant
-from datetime import datetime
-from functools import wraps
-from os import environ, execle, path, remove
-from git import Repo
-from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
+import heroku3
+import requests
 
-from AnkiVectorMusic.services.callsmusic import client as pakaya
-from AnkiVectorMusic.helpers.database import db
-from AnkiVectorMusic.helpers.dbthings import main_broadcast_handler
-from AnkiVectorMusic.modules.song import humanbytes, get_text
-from AnkiVectorMusic.config import BOT_USERNAME, OWNER_ID, UPSTREAM_REPO, U_BRANCH, HEROKU_URL, HEROKU_API_KEY, HEROKU_APP_NAME, SUDO_USERS
+from AnkiVectorMusic.config import telethn as borg, HEROKU_APP_NAME, HEROKU_API_KEY, OWNER_ID
+from AnkiVectorMusic.events import register
+from AnkiVector.helpers.heroku_helper import HerokuHelper
+
+heroku_api = "https://api.heroku.com"
+Heroku = heroku3.from_key(HEROKU_API_KEY)
 
 
-# Stats Of Your Bot
-@Client.on_message(filters.command("vcstats") & filters.user(OWNER_ID))
-async def botstats(_, message: Message):
-    total, used, free = shutil.disk_usage(".")
-    total = humanbytes(total)
-    used = humanbytes(used)
-    free = humanbytes(free)
-    cpu_usage = psutil.cpu_percent()
-    ram_usage = psutil.virtual_memory().percent
-    disk_usage = psutil.disk_usage('/').percent
-    total_users = await db.total_users_count()
-    await message.reply_text(
-        text=f"**💫 Bot Stats Of @{BOT_USERNAME} 💫** \n\n**🤖 Bot Version:** `V2.9.1` \n\n**👥 Users:** \n ↳**PM'ed Users:** `{total_users}` \n\n**💾 Disk Usage,** \n ↳**Total Disk Space:** `{total}` \n ↳**Used:** `{used}({disk_usage}%)` \n ↳**Free:** `{free}` \n\n**🎛 Hardware Usage,** \n ↳**CPU Usage:** `{cpu_usage}%` \n ↳**RAM Usage:** `{ram_usage}%`",
-        parse_mode="Markdown",
-        quote=True
+@register(pattern="^/(vcset|vcsee|vcdel) var(?: |$)(.*)(?: |$)([\s\S]*)")
+async def variable(var):
+    if var.fwd_from:
+        return
+    if var.sender_id == OWNER_ID:
+        pass
+    else:
+        return
+    """
+    Manage most of ConfigVars setting, set new var, get current var,
+    or delete var...
+    """
+    if HEROKU_APP_NAME is not None:
+        app = Heroku.app(HEROKU_APP_NAME)
+    else:
+        return await var.reply("`[HEROKU]:" "\nPlease setup your` **HEROKU_APP_NAME**")
+    exe = var.pattern_match.group(1)
+    heroku_var = app.config()
+    if exe == "see":
+        k = await var.reply("`Getting information...`")
+        await asyncio.sleep(1.5)
+        try:
+            variable = var.pattern_match.group(2).split()[0]
+            if variable in heroku_var:
+                return await k.edit(
+                    "**ConfigVars**:" f"\n\n`{variable} = {heroku_var[variable]}`\n"
+                )
+            else:
+                return await k.edit(
+                    "**ConfigVars**:" f"\n\n`Error:\n-> {variable} don't exists`"
+                )
+        except IndexError:
+            configs = prettyjson(heroku_var.to_dict(), indent=2)
+            with open("configs.json", "w") as fp:
+                fp.write(configs)
+            with open("configs.json", "r") as fp:
+                result = fp.read()
+                if len(result) >= 4096:
+                    await var.client.send_file(
+                        var.chat_id,
+                        "configs.json",
+                        reply_to=var.id,
+                        caption="`Output too large, sending it as a file`",
+                    )
+                else:
+                    await k.edit(
+                        "`[HEROKU]` ConfigVars:\n\n"
+                        "================================"
+                        f"\n```{result}```\n"
+                        "================================"
+                    )
+            os.remove("configs.json")
+            return
+    elif exe == "set":
+        s = await var.reply("`Setting information...weit ser`")
+        variable = var.pattern_match.group(2)
+        if not variable:
+            return await s.edit(">`.set var <ConfigVars-name> <value>`")
+        value = var.pattern_match.group(3)
+        if not value:
+            variable = variable.split()[0]
+            try:
+                value = var.pattern_match.group(2).split()[1]
+            except IndexError:
+                return await s.edit(">`/set var <ConfigVars-name> <value>`")
+        await asyncio.sleep(1.5)
+        if variable in heroku_var:
+            await s.edit(
+                f"**{variable}**  `successfully changed to`  ->  **{value}**"
+            )
+        else:
+            await s.edit(
+                f"**{variable}**  `successfully added with value`  ->  **{value}**"
+            )
+        heroku_var[variable] = value
+    elif exe == "del":
+        m = await var.edit("`Getting information to deleting variable...`")
+        try:
+            variable = var.pattern_match.group(2).split()[0]
+        except IndexError:
+            return await m.edit("`Please specify ConfigVars you want to delete`")
+        await asyncio.sleep(1.5)
+        if variable in heroku_var:
+            await m.edit(f"**{variable}**  `successfully deleted`")
+            del heroku_var[variable]
+        else:
+            return await m.edit(f"**{variable}**  `is not exists`")
+
+
+@register(pattern="^/vcusage(?: |$)")
+async def dyno_usage(dyno):
+    if dyno.fwd_from:
+        return
+    if dyno.sender_id == OWNER_ID:
+        pass
+    else:
+        return
+    """
+    Get your account Dyno Usage
+    """
+    die = await dyno.reply("**Processing...**")
+    useragent = (
+        "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/80.0.3987.149 Mobile Safari/537.36"
+    )
+    user_id = Heroku.account().id
+    headers = {
+        "User-Agent": useragent,
+        "Authorization": f"Bearer {HEROKU_API_KEY}",
+        "Accept": "application/vnd.heroku+json; version=3.account-quotas",
+    }
+    path = "/accounts/" + user_id + "/actions/get-quota"
+    r = requests.get(heroku_api + path, headers=headers)
+    if r.status_code != 200:
+        return await die.edit(
+            "`Error: something bad happened`\n\n" f">.`{r.reason}`\n"
+        )
+    result = r.json()
+    quota = result["account_quota"]
+    quota_used = result["quota_used"]
+
+    """ - Used - """
+    remaining_quota = quota - quota_used
+    percentage = math.floor(remaining_quota / quota * 100)
+    minutes_remaining = remaining_quota / 60
+    hours = math.floor(minutes_remaining / 60)
+    minutes = math.floor(minutes_remaining % 60)
+
+    """ - Current - """
+    App = result["apps"]
+    try:
+        App[0]["quota_used"]
+    except IndexError:
+        AppQuotaUsed = 0
+        AppPercentage = 0
+    else:
+        AppQuotaUsed = App[0]["quota_used"] / 60
+        AppPercentage = math.floor(App[0]["quota_used"] * 100 / quota)
+    AppHours = math.floor(AppQuotaUsed / 60)
+    AppMinutes = math.floor(AppQuotaUsed % 60)
+
+    await asyncio.sleep(1.5)
+
+    return await die.edit(
+        "**Dyno Usage**:\n\n"
+        f" -> `Dyno usage for`  **{HEROKU_APP_NAME}**:\n"
+        f"     •  `{AppHours}`**h**  `{AppMinutes}`**m**  "
+        f"**|**  [`{AppPercentage}`**%**]"
+        "\n\n"
+        " -> `Dyno hours quota remaining this month`:\n"
+        f"     •  `{hours}`**h**  `{minutes}`**m**  "
+        f"**|**  [`{percentage}`**%**]"
     )
 
 
-# Broadcast message to users (This will Broadcast using Bot with Db)
-@Client.on_message(filters.private & filters.command("vcbroadcast") & filters.user(OWNER_ID) & filters.reply)
-async def broadcast_handler_open(_, m: Message):
-    await main_broadcast_handler(m, db)
-
-# Broadcast message to users (This will Broadcast using streamer account without db)
-@Client.on_message(filters.command(["vcchatcast"]))
-async def chatcast(_, message: Message):
-    sent=0
-    failed=0
-    if message.from_user.id not in SUDO_USERS:
-        await message.reply("Go away! This is not for you 😂!")
+@register(pattern="^/vcrestart$")
+async def _(event):
+    if event.fwd_from:
         return
-    else:
-        wtf = await message.reply("`Starting a Chatcast...`")
-        if not message.reply_to_message:
-            await wtf.edit("Please Reply to a Message to Chatcast it 🥺!")
-            return
-        lmao = message.reply_to_message.text
-        async for dialog in pakaya.iter_dialogs():
-            try:
-                await pakaya.send_message(dialog.chat.id, lmao)
-                sent = sent+1
-                await wtf.edit(f"`ChatCasting...` \n\n**Sent to:** `{sent}` Chats \n**Failed in:** {failed} Chats")
-            except:
-                failed=failed+1
-                await wtf.edit(f"`ChatCasting...` \n\n**Sent to:** `{sent}` Chats \n**Failed in:** {failed} Chats")
-            await asyncio.sleep(3)
-        await message.reply_text(f"`ChatCasting Finished 😌` \n\n**Sent to:** `{sent}` Chats \n**Failed in:** {failed} Chats")
-
-
-# Ban User
-@Client.on_message(filters.private & filters.command("vcban") & filters.user(OWNER_ID))
-async def ban(c: Client, m: Message):
-    if len(m.command) == 1:
-        await m.reply_text(
-            f"Use this command to ban Users from using this bot 🤒! Read __**/modhelp**__ to Learn how to use this 🤭!",
-            quote=True
-        )
-        return
-    try:
-        user_id = int(m.command[1])
-        ban_duration = int(m.command[2])
-        ban_reason = ' '.join(m.command[3:])
-        ban_log_text = f"`Banning User 🗑...` \nUser ID: `{user_id}` \nDuration: `{ban_duration}` \nReason: `{ban_reason}`"
-        try:
-            await c.send_message(
-                user_id,
-                f"Lmao You are **Banned 😂!** \n\nReason: `{ban_reason}` \nDuration: `{ban_duration}` day(s). \n\n**Message From The Owner! Ask in **@Nexa_bots** if you think this was an mistake."
-            )
-            ban_log_text += '\n\nSuccessfully Notified About This Ban to that **Dumb User** 😅'
-        except:
-            traceback.print_exc()
-            ban_log_text += f"\n\nKCUF! I can't Notify About This Ban to That **Dumb User** 🤯 \n\n`{traceback.format_exc()}`"
-        await db.ban_user(user_id, ban_duration, ban_reason)
-        print(ban_log_text)
-        await m.reply_text(
-            ban_log_text,
-            quote=True
-        )
-    except:
-        traceback.print_exc()
-        await m.reply_text(
-            f"An Error Occoured ❌! Traceback is given below\n\n`{traceback.format_exc()}`",
-            quote=True
-        )
-
-
-# Unban User
-@Client.on_message(filters.private & filters.command("vcunban") & filters.user(OWNER_ID))
-async def unban(c: Client, m: Message):
-    if len(m.command) == 1:
-        await m.reply_text(
-            f"Use this command to ban Users from using this bot 🤒! Read __**/modhelp**__ to Learn how to use this 🤭!",
-            quote=True
-        )
-        return
-    try:
-        user_id = int(m.command[1])
-        unban_log_text = f"`Unbanning user...` /n**User ID:**{user_id}"
-        try:
-            await c.send_message(
-                user_id,
-                f"Good News! **You are Unbanned** 😊!"
-            )
-            unban_log_text += '\n\nSuccessfully Notified About This to that **Good User** 😅'
-        except:
-            traceback.print_exc()
-            unban_log_text += f"\n\nKCUF! I can't Notify About This to That **Dumb User** 🤯 \n\n`{traceback.format_exc()}`"
-        await db.remove_ban(user_id)
-        print(unban_log_text)
-        await m.reply_text(
-            unban_log_text,
-            quote=True
-        )
-    except:
-        traceback.print_exc()
-        await m.reply_text(
-            f"An Error Occoured ❌! Traceback is given below\n\n`{traceback.format_exc()}`",
-            quote=True
-        )
-
-
-# Banned User List
-@Client.on_message(filters.private & filters.command("vcbanlist") & filters.user(OWNER_ID))
-async def _banned_usrs(_, m: Message):
-    all_banned_users = await db.get_all_banned_users()
-    banned_usr_count = 0
-    text = ''
-    async for banned_user in all_banned_users:
-        user_id = banned_user['id']
-        ban_duration = banned_user['ban_status']['ban_duration']
-        banned_on = banned_user['ban_status']['banned_on']
-        ban_reason = banned_user['ban_status']['ban_reason']
-        banned_usr_count += 1
-        text += f"➬ **User ID**: `{user_id}`, **Ban Duration**: `{ban_duration}`, **Banned Date**: `{banned_on}`, **Ban Reason**: `{ban_reason}`\n\n"
-    reply_text = f"**Total Banned:** `{banned_usr_count}`\n\n{text}"
-    if len(reply_text) > 4096:
-        with open('banned-user-list.txt', 'w') as f:
-            f.write(reply_text)
-        await m.reply_document('banned-user-list.txt', True)
-        os.remove('banned-user-list.txt')
-        return
-    await m.reply_text(reply_text, True)
-
-
-# Updator
-REPO_ = UPSTREAM_REPO
-BRANCH_ = U_BRANCH
-
-@Client.on_message(filters.command("vcupdate") & filters.user(OWNER_ID))
-async def updatebot(_, message: Message):
-    msg = await message.reply_text("`Updating Module is Starting! Please Wait...`")
-    try:
-        repo = Repo()
-    except GitCommandError:
-        return await msg.edit(
-            "`Invalid Git Command!`"
-        )
-    except InvalidGitRepositoryError:
-        repo = Repo.init()
-        if "upstream" in repo.remotes:
-            origin = repo.remote("upstream")
-        else:
-            origin = repo.create_remote("upstream", REPO_)
-        origin.fetch()
-        repo.create_head(U_BRANCH, origin.refs.master)
-        repo.heads.master.set_tracking_branch(origin.refs.master)
-        repo.heads.master.checkout(True)
-    if repo.active_branch.name != U_BRANCH:
-        return await msg.edit(
-            f"Hmmm... Seems Like You Are Using Custom Branch Named `{repo.active_branch.name}`! Please Use `{U_BRANCH}` To Make This Works!"
-        )
-    try:
-        repo.create_remote("upstream", REPO_)
-    except BaseException:
+    if event.sender_id == OWNER_ID:
         pass
-    ups_rem = repo.remote("upstream")
-    ups_rem.fetch(U_BRANCH)
-    if not HEROKU_URL:
-        try:
-            ups_rem.pull(U_BRANCH)
-        except GitCommandError:
-            repo.git.reset("--hard", "FETCH_HEAD")
-        await run_cmd("pip3 install --no-cache-dir -r requirements.txt")
-        await msg.edit("**Successfully Updated! Restarting Now!**")
-        args = [sys.executable, "main.py"]
-        execle(sys.executable, *args, environ)
-        exit()
-        return
     else:
-        await msg.edit("`Heroku Detected!`")
-        await msg.edit("`Updating and Restarting has Started! Please wait for 5-10 Minutes!`")
-        ups_rem.fetch(U_BRANCH)
-        repo.git.reset("--hard", "FETCH_HEAD")
-        if "heroku" in repo.remotes:
-            remote = repo.remote("heroku")
-            remote.set_url(HEROKU_URL)
-        else:
-            remote = repo.create_remote("heroku", HEROKU_URL)
-        try:
-            remote.push(refspec="HEAD:refs/heads/master", force=True)
-        except BaseException as error:
-            await msg.edit(f"**Updater Error** \nTraceBack : `{error}`")
-            return repo.__del__()
-
-
-# Heroku Logs
-
-async def edit_or_send_as_file(
-    text: str,
-    message: Message,
-    client: Client,
-    caption: str = "`Result!`",
-    file_name: str = "result",
-    parse_mode="md",
-):
-    """Send As File If Len Of Text Exceeds Tg Limit Else Edit Message"""
-    if not text:
-        await message.edit("`There is something other than text! Aborting...`")
         return
-    if len(text) > 1024:
-        await message.edit("`OutPut is Too Large to Send in TG, Sending As File!`")
-        file_names = f"{file_name}.text"
-        open(file_names, "w").write(text)
-        await client.send_document(message.chat.id, file_names, caption=caption)
-        await message.delete()
-        if os.path.exists(file_names):
-            os.remove(file_names)
+    await event.edit("**Restarted Anki Vecor 👀**")
+    try:
+        herokuHelper = HerokuHelper(HEROKU_APP_NAME, HEROKU_API_KEY)
+        herokuHelper.restart()
+    except:
+        await borg.disconnect()
+        os.execl(sys.executable, sys.executable, *sys.argv)
+
+
+        
+@register(pattern="^/vclogs$")
+async def _(dyno):
+    if dyno.fwd_from:
         return
+    if dyno.sender_id == OWNER_ID:
+        pass
     else:
-        return await message.edit(text, parse_mode=parse_mode)
-
-
-
-heroku_client = None
-if HEROKU_API_KEY:
-    heroku_client = heroku3.from_key(HEROKU_API_KEY)
-
-def _check_heroku(func):
-    @wraps(func)
-    async def heroku_cli(client, message):
-        heroku_app = None
-        if not heroku_client:
-            await message.reply_text(
-                "`Please Add Heroku API Key To Use This Feature!`"
-            )
-        elif not HEROKU_APP_NAME:
-            await edit_or_reply(
-                message, "`Please Add Heroku APP Name To Use This Feature!`"
-            )
-        if HEROKU_APP_NAME and heroku_client:
-            try:
-                heroku_app = heroku_client.app(HEROKU_APP_NAME)
-            except:
-                await message.reply_text(
-                    message, "`Heroku Api Key And App Name Doesn't Match! Check it again`"
-                )
-            if heroku_app:
-                await func(client, message, heroku_app)
-
-    return heroku_cli
-
-@Client.on_message(filters.command("vclogs") & filters.user(OWNER_ID))
-@_check_heroku
-async def logswen(client: Client, message: Message, happ):
-    msg = await message.reply_text("`Please Wait For a Moment!`")
-    logs = happ.get_log()
-    capt = f"Heroku Logs Of `{HEROKU_APP_NAME}`"
-    await edit_or_send_as_file(logs, msg, client, capt, "logs")
-
-
-# Restart Your Bot
-@Client.on_message(filters.command("vcrestart") & filters.user(OWNER_ID))
-@_check_heroku
-async def restart(client: Client, message: Message, hap):
-    msg = await message.reply_text("`Restarting Now! Please wait...`")
-    hap.restart()
-
-
-# Set Heroku Var
-@Client.on_message(filters.command("vcsetvar") & filters.user(OWNER_ID))
-@_check_heroku
-async def setvar(client: Client, message: Message, app_):
-    msg = await message.reply_text(message, "`Please Wait...!`")
-    heroku_var = app_.config()
-    _var = get_text(message)
-    if not _var:
-        await msg.edit("This is not the way bro! \n\n**Usage:**`/setvar VAR VALUE`")
         return
-    if not " " in _var:
-        await msg.edit("This is not the way bro! \n\n**Usage:**`/setvar VAR VALUE`")
-        return
-    var_ = _var.split(" ", 1)
-    if len(var_) > 2:
-        await msg.edit("This is not the way bro! \n\n**Usage:**`/setvar VAR VALUE`")
-        return
-    _varname, _varvalue = var_
-    await msg.edit(f"**Variable:** `{_varname}` \n**New Value:** `{_varvalue}`")
-    heroku_var[_varname] = _varvalue
+    try:
+        Heroku = heroku3.from_key(HEROKU_API_KEY)
+        app = Heroku.app(HEROKU_APP_NAME)
+    except:
+        return await dyno.reply(
+            " Please make sure your Heroku API Key, Your App name are configured correctly in the heroku"
+        )
+    v = await dyno.reply("Getting Logs....")
+    with open("logs.txt", "w") as log:
+        log.write(app.get_log())
+    await v.edit("Got the logs wait a sec")
+    await dyno.client.send_file(
+        dyno.chat_id,
+        "logs.txt",
+        reply_to=dyno.id,
+        caption="Anki Vector Bot Logz.",
+    )
+
+    await asyncio.sleep(5)
+    await v.delete()
+    return os.remove("logs.txt")
 
 
-# Delete Heroku Var
-@Client.on_message(filters.command("vcdelvar") & filters.user(OWNER_ID))
-@_check_heroku
-async def delvar(client: Client, message: Message, app_):
-    msg = await message.reply_text(message, "`Please Wait...!`")
-    heroku_var = app_.config()
-    _var = get_text(message)
-    if not _var:
-        await msg.edit("`Give Me a Var Name To Delete!`")
-        return
-    if not _var in heroku_var:
-        await msg.edit("`Lol! This Var Doesn't Even Exists!`")
-        return
-    await msg.edit(f"Sucessfully Deleted Var Named `{_var}`")
-    del heroku_var[_var]
+def prettyjson(obj, indent=2, maxlinelength=80):
+    """Renders JSON content with indentation and line splits/concatenations to fit maxlinelength.
+    Only dicts, lists and basic types are supported"""
+
+    items, _ = getsubitems(
+        obj,
+        itemkey="",
+        islast=True,
+        maxlinelength=maxlinelength - indent,
+        indent=indent,
+    )
+    return indentitems(items, indent, level=0)
