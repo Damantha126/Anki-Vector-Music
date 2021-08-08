@@ -5,7 +5,7 @@ import os
 import heroku3
 import requests
 
-from AnkiVectorMusic.config import borg, HEROKU_APP_NAME, HEROKU_API_KEY, OWNER_ID
+from AnkiVectorMusic.config import HEROKU_APP_NAME, HEROKU_API_KEY, OWNER_ID
 from AnkiVectorMusic.events import register
 from AnkiVectorMusic.helpers.heroku_helper import HerokuHelper
 
