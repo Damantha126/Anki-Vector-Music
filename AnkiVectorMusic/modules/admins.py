@@ -1,30 +1,29 @@
-# Calls Music 1 - Telegram bot for streaming audio in group calls
-# Copyright (C) 2021  Roj Serbest
+"""
+Anki Vector Music- Telegram bot project
+Copyright (C) 2021  Damantha Jasinghe
 
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+Modified by Damantha Jasinghe
+"""
 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-
-from asyncio import QueueEmpty
+from asyncio.queues import QueueEmpty
+from AnkiVectorMusic.config import que
 from pyrogram import Client 
 from pyrogram import filters
 from pyrogram.types import Message
 
-from AnkiVectorMusic.config import que
 from AnkiVectorMusic.function.admins import set
 from AnkiVectorMusic.helpers.channelmusic import get_chat_id
-from AnkiVectorMusic.helpers.decorators import authorized_users_only
-from AnkiVectorMusic.helpers.decorators import errors
+from AnkiVectorMusic.helpers.decorators import authorized_users_only, errors
 from AnkiVectorMusic.helpers.filters import command
 from AnkiVectorMusic.helpers.filters import other_filters
 from AnkiVectorMusic.services.callsmusic import callsmusic
@@ -125,4 +124,4 @@ async def admincache(client, message: Message):
             for member in await message.chat.get_members(filter="administrators")
         ],
     )
-    await message.reply_text("✅ Admin cache refreshed!")
+    await message.reply_text("❇️ Admin cache refreshed!")
