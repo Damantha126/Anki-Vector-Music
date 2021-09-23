@@ -13,38 +13,34 @@
   "env": {
     "SESSION_NAME": {
       "description": "Pyrogram session string",
-      "required": true,
-      "value": ""
+      "required": true
     },
     "BOT_TOKEN": {
       "description": "A bot token from @BotFather",
-      "required": true,
-      "value": ""
+      "required": true
     },
     "BOT_USERNAME": {
       "description": "Your bot's username without @",
-      "required": true,
-      "value": "TheAnkiVectorbot"
+      "required": true
     },
     "BOT_NAME": {
       "description": "Your MusicPlayer Bot Name.",
       "required": false,
-      "value": "Anki Vector"
+      "value": ""
     },
     "SUPPORT_GROUP": {
       "description": "Your MusicPlayer support group without @ [Leave this if you don't have one]",
       "required": false,
-      "value": "AnkiSupport_Official"
+      "value": "AnkiSupport_official"
     },
     "PROJECT_NAME": {
       "description": "Your MusicPlayer project Name.",
       "required": false,
-      "value": "AV Botz"
+      "value": "Anki Vector"
     },
     "ASSISTANT_NAME": {
       "description": "Your MusicPlayer's assistant Username without @.",
-      "required": true,
-      "value": "AnkiVectorHelper"
+      "required": true
     },
     "ARQ_API_KEY": {
       "description": "Get from @ARQRobot.",
@@ -59,7 +55,7 @@
     "UPDATES_CHANNEL": {
       "description": "Updates Channel without @ [Leave this if you don't have one].",
       "required": false,
-      "value": "ankivectorUpdates"
+      "value": "AnkiVectorUpdates"
     },    
     "API_ID": {
       "description": "App ID from my.telegram.org/apps",
@@ -76,41 +72,12 @@
     },
     "SUDO_USERS": {
       "description": "List of user IDs counted as admin everywhere (separated by space).",
-      "required": true,
-      "value": "1391755824 1848277863"
+      "required": true
     },
     "DURATION_LIMIT": {
       "description": "Max audio duration limit for downloads (minutes).",
       "required": true,
-      "value": "120"
-    },
-    "OWNER_ID": {
-      "description": "Telegram Id Of yours!",
-      "required": true
-    },
-    "LOG_CHANNEL": {
-      "description": "Log Channel Where Bot Logs Go!",
-      "required": true,
-      "value": ""
-    },
-    "DATABASE_URL": {
-      "description": "Mongo Db url. Get it from https://www.mongodb.com/",
-      "required": true
-    },
-    "HEROKU_APP_NAME": {
-      "description": "Your Heroku App Name!",
-      "required": true,
-      "value": ""
-    },
-    "HEROKU_API_KEY": {
-      "description": "Your Heroku Api Key!",
-      "required": true,
-      "value": ""
-    },
-    "UPSTREAM_REPO": {
-      "description": "Github Repo Url. Only needed if you are using your own Fork!",
-      "required": false,
-      "value": "https://github.com/Damantha126/Anki-Vector-Music"
+      "value": "10"
     }
   }
 }
