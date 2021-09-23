@@ -17,7 +17,7 @@ Modified by Damantha Jasinghe
 
 
 from asyncio.queues import QueueEmpty
-from StreamMusic.config import que
+from AnkiVectorMusic.config import que
 from pyrogram import Client
 from pyrogram import filters
 from pyrogram.types import Message
