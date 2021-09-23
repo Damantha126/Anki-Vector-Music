@@ -1,18 +1,19 @@
-# AnkiVectorMusic (Telegram bot project )
-# Copyright (C) 2021  Damantha_Jasinghe
+"""
+Anki Vector Music- Telegram bot project
+Copyright (C) 2021  Damantha Jasinghe
 
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+Modified by Damantha Jasinghe
+"""
 
 
 from pyrogram import Client
@@ -40,24 +41,24 @@ async def addchannel(client, message):
     try:
         user = await USER.get_me()
     except:
-        user.first_name = "Shadow Helper"
+        user.first_name = "AnkiVectorHelper"
 
     try:
         await USER.join_chat(invitelink)
         await USER.send_message(message.chat.id, "I joined here as you requested")
     except UserAlreadyParticipant:
         await message.reply_text(
-            "<b>Helper already in your chat</b>",
+            "<b>helper already in your chat</b>",
         )
     except Exception as e:
         print(e)
         await message.reply_text(
-            f"<b>🛑 Flood Wait Error 🛑 \n User {user.first_name} couldn't join your group due to heavy join requests for userbot! Make sure user is not banned in group."
+            f"<b>⚠️ Flood Wait Error ⚠️ \n User {user.first_name} couldn't join your group due to heavy join requests for userbot! Make sure user is not banned in group."
             "\n\nOr manually add @AnkiVectorHelper to your Group and try again</b>",
         )
         return
     await message.reply_text(
-        "<b>Helper userbot joined your chat</b>",
+        "<b>helper userbot joined your chat</b>",
     )
 
 
@@ -114,23 +115,24 @@ async def addcchannel(client, message):
     try:
         user = await USER.get_me()
     except:
-        user.first_name = "Anki Vector Helper"
+        user.first_name = "AnkiVectorHelper"
 
     try:
         await USER.join_chat(invitelink)
         await USER.send_message(message.chat.id, "I joined here as you requested")
     except UserAlreadyParticipant:
         await message.reply_text(
-            "<b>Helper already in your channel</b>",
+            "<b>helper already in your channel</b>",
         )
         return
     except Exception as e:
         print(e)
         await message.reply_text(
-            f"<b>🛑 Flood Wait Error 🛑 \n User {user.first_name} couldn't join your channel due to heavy join requests for userbot! Make sure user is not banned in channel."
+            f"<b>⚠️ Flood Wait Error ⚠️ \n User {user.first_name} couldn't join your channel due to heavy join requests for userbot! Make sure user is not banned in channel."
             "\n\nOr manually add @AnkiVectorHelper to your Group and try again</b>",
         )
         return
     await message.reply_text(
-        "<b>Helper userbot joined your channel</b>",
+        "<b>helper userbot joined your channel</b>",
     )
+    
