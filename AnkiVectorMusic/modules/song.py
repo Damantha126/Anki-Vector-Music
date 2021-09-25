@@ -380,6 +380,7 @@ async def vsong(client, message):
         duration=int(ytdl_data["duration"]),
         thumb=preview,
         caption=rep
+    )
     try:
         os.remove(file_name)
         await msg.delete()
