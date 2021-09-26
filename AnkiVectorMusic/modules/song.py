@@ -100,9 +100,9 @@ async def deezsong(_, message):
         title = songs.result[0].title
         url = songs.result[0].url
         artist = songs.result[0].artist
-        await m.edit("Downloading")
+        await m.edit("Downloading...")
         song = await download_song(url)
-        await m.edit("Uploading")
+        await m.edit("Uploading...")
         await message.reply_audio(audio=song, title=title, performer=artist)
         os.remove(song)
         await m.delete()
