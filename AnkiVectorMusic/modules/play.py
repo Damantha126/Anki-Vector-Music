@@ -629,10 +629,12 @@ async def play(_, message: Message):
 
             while j < 5:
                 toxxt += f"{emojilist[j]} <b>🏷Title - [{results[j]['title']}](https://youtube.com{results[j]['url_suffix']})</b>\n"
-                toxxt += f" ╚ <b>⏱Duration</b> - {results[j]['duration']}\n"
-                toxxt += f" ╚ <b>👀Views</b> - {results[j]['views']}\n"
-                toxxt += f" ╚ <b>📢Channel</b> - {results[j]['channel']}\n"
-                toxxt += f" ╚ <b>🔗Link</b> - https://youtube.com{results[j]['url_suffix']}\n\n"
+                toxxt += f"💡 [More information](https://t.me/TheAnkiVectorBot?start={results[j]['url_suffix']})\n"
+                toxxt += f"<i>⚡️ Powered by Anki Vector Music AI</i>\n\n"
+#                toxxt += f" ╚ <b>⏱Duration</b> - {results[j]['duration']}\n"
+#                toxxt += f" ╚ <b>👀Views</b> - {results[j]['views']}\n"
+#                toxxt += f" ╚ <b>📢Channel</b> - {results[j]['channel']}\n"
+#                toxxt += f" ╚ <b>🔗Link</b> - https://youtube.com{results[j]['url_suffix']}\n\n"
 
                 j += 1            
             koyboard = InlineKeyboardMarkup(
