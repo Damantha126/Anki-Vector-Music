@@ -623,6 +623,7 @@ async def play(_, message: Message):
         try:
             THUMB_IMG = "https://telegra.ph/file/b83d7802eb7d072ef8e1d.jpg"
             toxxt = "**Select the song you want to play**\n\n"
+            toxxt2 = "**Select the song you want to play**\n\n"
             j = 0
             useer=user_name
             emojilist = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣",]
@@ -678,7 +679,6 @@ async def play(_, message: Message):
                 ]
             )
             await lel.edit(toxxt,reply_markup=koyboard,disable_web_page_preview=True)
-            await lel.edit(toxxt2,reply_markup=koyboard2,disable_web_page_preview=True)
             # WHY PEOPLE ALWAYS LOVE PORN ?? (A point to think)
             return
             # Returning to pornhub
@@ -760,7 +760,15 @@ async def play(_, message: Message):
         )
         os.remove("final.png")
         return await lel.delete()
-
+         
+@Client.on_callback_query() # callbackQuery()
+async def cb_data(bot, update):  
+    if update.data == "nextpage":
+        await update.message.edit_text(
+            text=toxxt2,
+            reply_markup=koyboard2,
+            disable_web_page_preview=True
+        )            
 
 @Client.on_message(filters.command("ytplay") & filters.group & ~filters.edited)
 async def ytplay(_, message: Message):
