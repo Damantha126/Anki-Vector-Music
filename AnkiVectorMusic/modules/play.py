@@ -531,7 +531,7 @@ async def play(_, message: Message):
         urls=None
     if text_links:
         urls = True
-    user_id = message.from_user.id
+    user_id = message.from_user.id == 1087968824
     user_name = message.from_user.first_name
     rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
     audio = (
@@ -635,7 +635,7 @@ async def play(_, message: Message):
                 toxxt += f"╚<i>⚡️ Powered by Anki Vector Music AI</i>\n\n"
 
                 toxxt2 += f"{emojilist2[j]} <b>🏷Title - [{results[j]['title']}](https://youtube.com{results[j]['url_suffix']})</b>\n"
-                toxxt2 += f"╚💡 [More information](https://t.me/TheAnkiVectorBot?start={results[j]['url_suffix']})\n"
+                toxxt2 += f"╚💡 [More information](https://t.me/TheAnkiVectorBot?start=GetInfoSong{['url_suffix']})\n"
                 toxxt2 += f"╚<i>⚡️ Powered by Anki Vector Music AI</i>\n\n"
 #                toxxt += f" ╚ <b>⏱Duration</b> - {results[j]['duration']}\n"
 #                toxxt += f" ╚ <b>👀Views</b> - {results[j]['views']}\n"
@@ -679,9 +679,7 @@ async def play(_, message: Message):
                 ]
             )
             await lel.edit(toxxt,reply_markup=koyboard,disable_web_page_preview=True)
-            # WHY PEOPLE ALWAYS LOVE PORN ?? (A point to think)
             return
-            # Returning to pornhub
         except:
             await lel.edit("<b>No Enough results to choose.. Starting direct play..</b>")
                         
