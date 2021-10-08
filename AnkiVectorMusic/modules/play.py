@@ -531,7 +531,7 @@ async def play(_, message: Message):
         urls=None
     if text_links:
         urls = True
-    user_id = message.from_user.id == 1087968824
+    user_id = message.from_user.id
     user_name = message.from_user.first_name
     rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
     audio = (
@@ -758,14 +758,6 @@ async def play(_, message: Message):
         )
         os.remove("final.png")
         return await lel.delete()
-         
-@Client.on_callback_query(filters.regex(pattern=r"^(nextpage)$"))
-async def cb_data(bot, update):
-        await update.message.edit_text(
-            text=toxxt2,
-            reply_markup=koyboard2,
-            disable_web_page_preview=True
-        )            
 
 @Client.on_message(filters.command("ytplay") & filters.group & ~filters.edited)
 async def ytplay(_, message: Message):
