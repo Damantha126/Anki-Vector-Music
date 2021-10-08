@@ -616,7 +616,7 @@ async def play(_, message: Message):
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         
         try:
-          results = YoutubeSearch(query, max_results=5).to_dict()
+          results = YoutubeSearch(query, max_results=9).to_dict()
         except:
           await lel.edit("Give me something to play")
         # Looks like hell. Aren't it?? FUCK OFF
@@ -626,11 +626,16 @@ async def play(_, message: Message):
             j = 0
             useer=user_name
             emojilist = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣",]
+            emojilist2 = ["6️⃣","7️⃣","8️⃣","9️⃣","🔟",]
 
             while j < 5:
                 toxxt += f"{emojilist[j]} <b>🏷Title - [{results[j]['title']}](https://youtube.com{results[j]['url_suffix']})</b>\n"
                 toxxt += f"╚💡 [More information](https://t.me/TheAnkiVectorBot?start={results[j]['url_suffix']})\n"
                 toxxt += f"╚<i>⚡️ Powered by Anki Vector Music AI</i>\n\n"
+
+                toxxt2 += f"{emojilist2[j]} <b>🏷Title - [{results[j]['title']}](https://youtube.com{results[j]['url_suffix']})</b>\n"
+                toxxt2 += f"╚💡 [More information](https://t.me/TheAnkiVectorBot?start={results[j]['url_suffix']})\n"
+                toxxt2 += f"╚<i>⚡️ Powered by Anki Vector Music AI</i>\n\n"
 #                toxxt += f" ╚ <b>⏱Duration</b> - {results[j]['duration']}\n"
 #                toxxt += f" ╚ <b>👀Views</b> - {results[j]['views']}\n"
 #                toxxt += f" ╚ <b>📢Channel</b> - {results[j]['channel']}\n"
@@ -653,8 +658,27 @@ async def play(_, message: Message):
                     ],
                     [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
                 ]
-            )       
+            )
+            
+            koyboard2 = InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("6️⃣", callback_data=f'plll 5|{query}|{user_id}'),
+                        InlineKeyboardButton("7️⃣", callback_data=f'plll 6|{query}|{user_id}'),
+                        InlineKeyboardButton("8️⃣", callback_data=f'plll 7|{query}|{user_id}'),
+                    ],
+                    [
+                        InlineKeyboardButton("9️⃣", callback_data=f'plll 8|{query}|{user_id}'),
+                        InlineKeyboardButton("🔟", callback_data=f'plll 9|{query}|{user_id}'),
+                    ],
+                    [
+                        InlineKeyboardButton("◀️", callback_data=f'backpage|{user_id}'),
+                    ],
+                    [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
+                ]
+            )
             await lel.edit(toxxt,reply_markup=koyboard,disable_web_page_preview=True)
+            await lel.edit(toxxt2,reply_markup=koyboard2,disable_web_page_preview=True)
             # WHY PEOPLE ALWAYS LOVE PORN ?? (A point to think)
             return
             # Returning to pornhub
