@@ -761,9 +761,8 @@ async def play(_, message: Message):
         os.remove("final.png")
         return await lel.delete()
          
-@Client.on_callback_query() # callbackQuery()
-async def cb_data(bot, update):  
-    if update.data == "nextpage":
+@Client.on_callback_query(filters.regex(pattern=r"^(nextpage)$"))
+async def cb_data(bot, update):
         await update.message.edit_text(
             text=toxxt2,
             reply_markup=koyboard2,
