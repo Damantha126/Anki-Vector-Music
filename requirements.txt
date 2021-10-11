@@ -5,11 +5,11 @@ python-dotenv==0.19.1
 youtube_dl==2021.6.6
 youtube-search-python==1.4.9
 requests==2.26.0
-aiohttp==3.7.4.post0
+aiohttp
 aiofiles==0.7.0
 asyncio==3.4.3
 youtube-search==2.1.0
-search-engine-parser==0.6.6
+search-engine-parser
 ffmpeg==1.4
 Pillow==8.3.2
 python-arq==6.0.3
