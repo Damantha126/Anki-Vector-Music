@@ -616,43 +616,70 @@ async def play(_, message: Message):
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         
         try:
-          results = YoutubeSearch(query, max_results=5).to_dict()
+          results = YoutubeSearch(query, max_results=9).to_dict()
         except:
           await lel.edit("Give me something to play")
         # Looks like hell. Aren't it?? FUCK OFF
         try:
             THUMB_IMG = "https://telegra.ph/file/b83d7802eb7d072ef8e1d.jpg"
             toxxt = "**Select the song you want to play**\n\n"
+            toxxt2 = "**Select the song you want to play**\n\n"
             j = 0
             useer=user_name
             emojilist = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣",]
+            emojilist2 = ["6️⃣","7️⃣","8️⃣","9️⃣","🔟",]
 
             while j < 5:
                 toxxt += f"{emojilist[j]} <b>🏷Title - [{results[j]['title']}](https://youtube.com{results[j]['url_suffix']})</b>\n"
-                toxxt += f" ╚ <b>⏱Duration</b> - {results[j]['duration']}\n"
-                toxxt += f" ╚ <b>👀Views</b> - {results[j]['views']}\n"
-                toxxt += f" ╚ <b>🔗Link</b> - https://youtube.com{results[j]['url_suffix']}\n"
-                toxxt += f" ╚ <b>📢Channel</b> - {results[j]['channel']}\n\n"
+                toxxt += f"╚💡 [More information](https://t.me/TheAnkiVectorBot?start={results[j]['url_suffix']})\n"
+                toxxt += f"╚<i>⚡️ Powered by Anki Vector Music AI</i>\n\n"
+
+                toxxt2 += f"{emojilist2[j]} <b>🏷Title - [{results[j]['title']}](https://youtube.com{results[j]['url_suffix']})</b>\n"
+                toxxt2 += f"╚💡 [More information](https://t.me/TheAnkiVectorBot?start=GetInfoSong{['url_suffix']})\n"
+                toxxt2 += f"╚<i>⚡️ Powered by Anki Vector Music AI</i>\n\n"
+#                toxxt += f" ╚ <b>⏱Duration</b> - {results[j]['duration']}\n"
+#                toxxt += f" ╚ <b>👀Views</b> - {results[j]['views']}\n"
+#                toxxt += f" ╚ <b>📢Channel</b> - {results[j]['channel']}\n"
+#                toxxt += f" ╚ <b>🔗Link</b> - https://youtube.com{results[j]['url_suffix']}\n\n"
 
                 j += 1            
             koyboard = InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("1️⃣ One", callback_data=f'plll 0|{query}|{user_id}'),
-                        InlineKeyboardButton("2️⃣ Two", callback_data=f'plll 1|{query}|{user_id}'),
-                        InlineKeyboardButton("3️⃣ Three", callback_data=f'plll 2|{query}|{user_id}'),
+                        InlineKeyboardButton("1️⃣", callback_data=f'plll 0|{query}|{user_id}'),
+                        InlineKeyboardButton("2️⃣", callback_data=f'plll 1|{query}|{user_id}'),
+                        InlineKeyboardButton("3️⃣", callback_data=f'plll 2|{query}|{user_id}'),
                     ],
                     [
-                        InlineKeyboardButton("4️⃣ Foue", callback_data=f'plll 3|{query}|{user_id}'),
-                        InlineKeyboardButton("5️⃣ Five", callback_data=f'plll 4|{query}|{user_id}'),
+                        InlineKeyboardButton("4️⃣", callback_data=f'plll 3|{query}|{user_id}'),
+                        InlineKeyboardButton("5️⃣", callback_data=f'plll 4|{query}|{user_id}'),
                     ],
-                    [InlineKeyboardButton(text="❌ Close", callback_data="cls")],
+                    [
+                        InlineKeyboardButton("➡️", callback_data=f'nextpage|{user_id}'),
+                    ],
+                    [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
                 ]
-            )       
+            )
+            
+            koyboard2 = InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("6️⃣", callback_data=f'plll 5|{query}|{user_id}'),
+                        InlineKeyboardButton("7️⃣", callback_data=f'plll 6|{query}|{user_id}'),
+                        InlineKeyboardButton("8️⃣", callback_data=f'plll 7|{query}|{user_id}'),
+                    ],
+                    [
+                        InlineKeyboardButton("9️⃣", callback_data=f'plll 8|{query}|{user_id}'),
+                        InlineKeyboardButton("🔟", callback_data=f'plll 9|{query}|{user_id}'),
+                    ],
+                    [
+                        InlineKeyboardButton("◀️", callback_data=f'backpage|{user_id}'),
+                    ],
+                    [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
+                ]
+            )
             await lel.edit(toxxt,reply_markup=koyboard,disable_web_page_preview=True)
-            # WHY PEOPLE ALWAYS LOVE PORN ?? (A point to think)
             return
-            # Returning to pornhub
         except:
             await lel.edit("<b>No Enough results to choose.. Starting direct play..</b>")
                         
@@ -731,7 +758,6 @@ async def play(_, message: Message):
         )
         os.remove("final.png")
         return await lel.delete()
-
 
 @Client.on_message(filters.command("ytplay") & filters.group & ~filters.edited)
 async def ytplay(_, message: Message):
